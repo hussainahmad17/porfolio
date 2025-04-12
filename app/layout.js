@@ -3,13 +3,13 @@ import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { ThemeProvider } from "@/components/ThemeProvider"
+import ScrollToTop from "@/components/ScrollToTop"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Hussain Ahmad - Portfolio",
   description: "Professional portfolio of Hussain Ahmad, Web Developer & Designer",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({ children }) {
@@ -21,12 +21,10 @@ export default function RootLayout({ children }) {
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
+            <ScrollToTop />
           </div>
         </ThemeProvider>
       </body>
     </html>
   )
 }
-
-
-import './globals.css'

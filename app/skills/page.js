@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import SkillCard from "@/components/SkillCard"
+import Image from "next/image"
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState("all")
@@ -103,10 +104,16 @@ export default function Skills() {
 
   const toolsSkills = [
     {
-      name: "Git",
-      icon: "git",
+      name: "v0.dev",
+      icon: "v0",
       category: "tools",
-      description: "Version control for tracking changes, collaborating with teams, and managing code history.",
+      description: "AI-powered design tool for rapidly prototyping and generating UI components.",
+    },
+    {
+      name: "bolt.new",
+      icon: "bolt",
+      category: "tools",
+      description: "Quick web app creation tool for building and deploying full-stack applications.",
     },
     {
       name: "GitHub",
@@ -115,20 +122,59 @@ export default function Skills() {
       description: "Hosting repositories, managing projects, and collaborating with other developers.",
     },
     {
+      name: "VS Code",
+      icon: "vscode",
+      category: "tools",
+      description: "Writing and debugging code efficiently with extensions and integrated terminal.",
+    },
+    {
+      name: "Cursor IDE",
+      icon: "cursor",
+      category: "tools",
+      description: "AI-enhanced code editor for faster development and intelligent code suggestions.",
+    },
+    {
       name: "Vercel",
       icon: "vercel",
       category: "tools",
       description: "Deploying and hosting web applications with continuous integration and preview deployments.",
     },
     {
-      name: "VS Code",
-      icon: "vscode",
+      name: "Git",
+      icon: "git",
       category: "tools",
-      description: "Writing and debugging code efficiently with extensions and integrated terminal.",
+      description: "Version control for tracking changes, collaborating with teams, and managing code history.",
     },
   ]
 
-  const allSkills = [...frontendSkills, ...reactSkills, ...nextjsSkills, ...toolsSkills]
+  const backendSkills = [
+    {
+      name: "Next.js (Backend)",
+      icon: "nextjs",
+      category: "backend",
+      description: "Leveraging Next.js for full-stack development with API routes and server components.",
+    },
+    {
+      name: "MongoDB",
+      icon: "mongodb",
+      category: "backend",
+      description: "NoSQL database for storing and retrieving data with flexible document schemas.",
+    },
+    {
+      name: "OAuth",
+      icon: "oauth",
+      category: "backend",
+      description: "Implementing secure authentication flows for user login and authorization.",
+    },
+    {
+      name: "Supabase",
+      icon: "supabase",
+      category: "backend",
+      description: "Open source Firebase alternative with authentication, database, and storage solutions.",
+    },
+  ]
+
+  const allSkills = [...frontendSkills, ...reactSkills, ...nextjsSkills, ...toolsSkills, ...backendSkills]
 
   const filteredSkills =
     activeCategory === "all" ? allSkills : allSkills.filter((skill) => skill.category === activeCategory)
@@ -211,6 +257,16 @@ export default function Skills() {
           Next.js
         </button>
         <button
+          onClick={() => setActiveCategory("backend")}
+          className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+            activeCategory === "backend"
+              ? "bg-primary text-primary-foreground shadow-lg"
+              : "bg-secondary hover:bg-secondary/80"
+          }`}
+        >
+          Backend
+        </button>
+        <button
           onClick={() => setActiveCategory("tools")}
           className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
             activeCategory === "tools"
@@ -222,17 +278,99 @@ export default function Skills() {
         </button>
       </motion.div>
 
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        variants={container}
-        initial="hidden"
-        animate="show"
-        key={activeCategory} // This forces re-animation when category changes
-      >
-        {filteredSkills.map((skill, index) => (
-          <SkillCard key={skill.name} skill={skill} index={index} />
-        ))}
-      </motion.div>
+      {/* Tools Section */}
+      {(activeCategory === "all" || activeCategory === "tools") && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="mb-12"
+        >
+          <h2 className="text-2xl font-bold mb-6 gradient-text">TOOLS</h2>
+          <div className="flex flex-wrap gap-2 mb-6">
+            <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">v0.dev</span>
+            <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">bolt.new</span>
+            <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">GitHub</span>
+            <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">VS Code</span>
+            <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">Cursor IDE</span>
+            <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">Vercel</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {toolsSkills.map((skill, index) => (
+              <SkillCard key={skill.name} skill={skill} index={index} />
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="border border-border rounded-lg overflow-hidden">
+              <Image
+                src="https://sjc.microlink.io/TPcG3OwKlSO50XHsahQspilnt5zDsuYhAWTLbC9K8Swhn6vvw_Lp073ajZgcHXBYB2F6nE4GpCmpRwd6FknOwA.jpeg"
+                alt="v0.dev interface"
+                width={600}
+                height={400}
+                className="w-full object-cover"
+              />
+              <div className="p-4">
+                <h3 className="font-medium">v0.dev - AI-powered UI generation</h3>
+              </div>
+            </div>
+            <div className="border border-border rounded-lg overflow-hidden">
+              <Image
+                src="https://sjc.microlink.io/yhsYPwQJU_SvsoaCaja_cYKPPQSw_xX23oMjAMEdkLcLU0zKcY8cMvYwcdBo1JJZshFVQzyoyHFJ3k5jgIsnPA.jpeg"
+                alt="bolt.new interface"
+                width={600}
+                height={400}
+                className="w-full object-cover"
+              />
+              <div className="p-4">
+                <h3 className="font-medium">bolt.new - Quick web app creation</h3>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Backend Technologies Section */}
+      {(activeCategory === "all" || activeCategory === "backend") && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="mb-12"
+        >
+          <h2 className="text-2xl font-bold mb-6 gradient-text">BACKEND TECHNOLOGIES</h2>
+          <div className="flex flex-wrap gap-2 mb-6">
+            <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">NEXT.JS</span>
+            <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">MONGODB</span>
+            <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">OAUTH</span>
+            <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">SUPABASE</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+            {backendSkills.map((skill, index) => (
+              <SkillCard key={skill.name} skill={skill} index={index} />
+            ))}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Other Skills */}
+      {activeCategory !== "tools" && activeCategory !== "backend" && (
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={container}
+          initial="hidden"
+          animate="show"
+          key={activeCategory} // This forces re-animation when category changes
+        >
+          {filteredSkills
+            .filter((skill) => skill.category !== "tools" && skill.category !== "backend")
+            .map((skill, index) => (
+              <SkillCard key={skill.name} skill={skill} index={index} />
+            ))}
+        </motion.div>
+      )}
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -246,7 +384,7 @@ export default function Skills() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          {["TypeScript", "Three.js", "Node.js", "Express", "MongoDB", "GraphQL"].map((skill, index) => (
+          {["TypeScript", "Three.js", "Node.js", "Express", "GraphQL"].map((skill, index) => (
             <motion.span
               key={index}
               className="px-4 py-2 bg-background rounded-full text-sm font-medium"

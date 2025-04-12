@@ -27,6 +27,8 @@ export default function SkillCard({ skill, index }) {
       "bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-800 hover:border-purple-300 dark:hover:border-purple-700",
     tools:
       "bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-800 hover:border-green-300 dark:hover:border-green-700",
+    backend:
+      "bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 border-orange-200 dark:border-orange-800 hover:border-orange-300 dark:hover:border-orange-700",
   }
 
   const iconStyles = {
@@ -34,6 +36,7 @@ export default function SkillCard({ skill, index }) {
     nextjs: "text-gray-700 dark:text-gray-300",
     frontend: "text-purple-500 dark:text-purple-400",
     tools: "text-green-500 dark:text-green-400",
+    backend: "text-orange-500 dark:text-orange-400",
   }
 
   return (
@@ -43,7 +46,7 @@ export default function SkillCard({ skill, index }) {
         scale: 1.03,
         boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
       }}
-      className={`flex flex-col p-5 rounded-lg border ${cardStyles[skill.category] || cardStyles.frontend} transition-all duration-300 h-full`}
+      className={`flex flex-col p-5 rounded-lg border ${cardStyles[skill.category] || cardStyles.frontend} transition-all duration-300 h-full min-h-[180px]`}
     >
       <div className="flex items-center gap-3 mb-3">
         <div className={`${iconStyles[skill.category] || iconStyles.frontend} w-10 h-10 flex-shrink-0`}>
@@ -51,7 +54,7 @@ export default function SkillCard({ skill, index }) {
         </div>
         <h3 className="font-medium text-lg">{skill.name}</h3>
       </div>
-      <p className="text-muted-foreground text-sm">{skill.description}</p>
+      <p className="text-muted-foreground text-sm mt-auto line-clamp-3">{skill.description}</p>
     </motion.div>
   )
 }
