@@ -45,7 +45,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
-            FRONTEND WEB DEVELOPER
+            FULL-STACK WEB DEVELOPER
           </motion.p>
           <motion.p
             className="text-base md:text-lg text-muted-foreground mb-8 max-w-lg"
